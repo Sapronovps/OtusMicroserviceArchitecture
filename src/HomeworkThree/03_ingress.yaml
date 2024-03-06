@@ -5,7 +5,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /health/$2
-  name: otus-ingress
+  name: otus-ingress-rewrite
   namespace: otus
 spec:
     ingressClassName: nginx
@@ -19,14 +19,14 @@ spec:
                   name: otus-service
                   port:
                     number: 80
-              path: /(.*)/health
+              path: /otusapp/(.*)/health
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
-  name: otus-ingress-2
+  name: otus-ingress
   namespace: otus
 spec:
   ingressClassName: nginx
