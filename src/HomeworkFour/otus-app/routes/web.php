@@ -21,4 +21,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/status', [StatusController::class, 'index']);
+Route::get('/health', [StatusController::class, 'index']);
