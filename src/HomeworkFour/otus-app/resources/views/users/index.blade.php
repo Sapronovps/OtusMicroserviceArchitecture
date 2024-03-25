@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>CRUD пользователей </h2>
+                <h2>CRUD пользователей</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('users.create') }}"> Создать нового пользователя</a>

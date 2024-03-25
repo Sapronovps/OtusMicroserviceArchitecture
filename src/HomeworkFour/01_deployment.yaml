@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otus-dp
+  namespace: otus
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: otus-app
+  template:
+    metadata:
+      namespace: otus
+      labels:
+        app: otus-app
+    spec:
+      containers:
+        - name: otus-app
+          image: sapronovps/otus-microservice-architecture
+          ports:
+            - containerPort: 80
+#          readinessProbe:
+#            httpGet:
+#              port: 80
+#              path: /health
+#            periodSeconds: 2
+#            failureThreshold: 3
+#            successThreshold: 1
+#            timeoutSeconds: 1
+#          livenessProbe:
+#            httpGet:
+#              port: 80
+#              path: /health
+#            periodSeconds: 10
+#            failureThreshold: 3
+#            successThreshold: 1
+#            timeoutSeconds: 1
+#            initialDelaySeconds: 10

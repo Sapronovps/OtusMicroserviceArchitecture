@@ -1,21 +1,15 @@
 version: "3.3"
 services:
-    nginx:
+    laravel-app:
         build:
-            context: ./docker/nginx
-        volumes:
-            - ./:/app
-        links:
-            - php-fpm
+            context: '.'
+            args:
+                uid: ${UID}
+        container_name: laravel-app
         ports:
-            - "80:80"
-    php-fpm:
-        build:
-            context: ./docker/php-fpm
-        volumes:
-            - ./:/app
-        ports:
-            - "9000:9000"
+            - 8080:80
+#        volumes:
+#            - .:/var/www/html
     postgres:
         image: postgres:15-alpine
         environment:
