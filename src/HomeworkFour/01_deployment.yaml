@@ -21,20 +21,20 @@ spec:
           image: sapronovps/otus-microservice-architecture
           ports:
             - containerPort: 80
-#          readinessProbe:
-#            httpGet:
-#              port: 80
-#              path: /health
-#            periodSeconds: 2
-#            failureThreshold: 3
-#            successThreshold: 1
-#            timeoutSeconds: 1
-#          livenessProbe:
-#            httpGet:
-#              port: 80
-#              path: /health
-#            periodSeconds: 10
-#            failureThreshold: 3
-#            successThreshold: 1
-#            timeoutSeconds: 1
-#            initialDelaySeconds: 10
+          readinessProbe:
+            httpGet:
+              port: 80
+              path: /health
+            periodSeconds: 2
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /health
+            periodSeconds: 10
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+            initialDelaySeconds: 10
