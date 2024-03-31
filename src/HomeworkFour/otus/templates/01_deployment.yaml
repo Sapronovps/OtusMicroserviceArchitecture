@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: otus-dp
+  name: {{ .Values.deploymentName }}
   namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
@@ -24,6 +24,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ .Values.configMapRefPgsql }}
+            - secretRef:
+                name: {{ .Values.secretMapRef }}
           readinessProbe:
             httpGet:
               port: {{ .Values.image.port }}
