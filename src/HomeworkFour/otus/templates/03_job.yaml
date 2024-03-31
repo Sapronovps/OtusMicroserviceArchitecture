@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.jobName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  template:
+    spec:
+      containers:
+        - name: {{ .Values.jobName }}
+          image: {{ .Values.image.repository }}
+          command: ["php", "artisan", "migrate"]
+      restartPolicy: Never
+  backoffLimit: 4

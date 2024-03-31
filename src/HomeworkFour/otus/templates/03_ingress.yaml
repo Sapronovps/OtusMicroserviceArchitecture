@@ -3,10 +3,10 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
-#    nginx.ingress.kubernetes.io/use-regex: "true"
-#    nginx.ingress.kubernetes.io/rewrite-target: /health/$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /health/$2
   name: otus-ingress-rewrite
-  namespace: otus
+  namespace: {{ .Values.namespace }}
 spec:
     ingressClassName: nginx
     rules:
@@ -16,9 +16,9 @@ spec:
             - pathType: ImplementationSpecific
               backend:
                 service:
-                  name: otus-service
+                  name: {{ .Values.serviceName }}
                   port:
-                    number: 80
+                    number: {{ .Values.image.port }}
               path: /otusapp/(.*)/health
 ---
 apiVersion: networking.k8s.io/v1
@@ -27,7 +27,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
   name: otus-ingress
-  namespace: otus
+  namespace: {{ .Values.namespace }}
 spec:
   ingressClassName: nginx
   rules:
@@ -37,8 +37,8 @@ spec:
           - pathType: Prefix
             backend:
               service:
-                name: otus-service
+                name: {{ .Values.serviceName }}
                 port:
-                  number: 80
+                  number: {{ .Values.image.port }}
             path: /
 

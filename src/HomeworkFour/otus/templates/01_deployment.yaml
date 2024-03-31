@@ -2,28 +2,31 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: otus-dp
-  namespace: otus
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: 3
+  replicas: {{ .Values.replicaCount }}
   strategy:
-    type: Recreate
+    type: {{ .Values.strategy.type }}
   selector:
     matchLabels:
-      app: otus-app
+      app: {{ .Values.appName }}
   template:
     metadata:
-      namespace: otus
+      namespace: {{ .Values.namespace }}
       labels:
-        app: otus-app
+        app: {{ .Values.appName }}
     spec:
       containers:
-        - name: otus-app
-          image: sapronovps/otus-microservice-architecture
+        - name: {{ .Values.appName }}
+          image: {{ .Values.image.repository }}
           ports:
-            - containerPort: 80
+            - containerPort: {{ .Values.image.port }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMapRefPgsql }}
           readinessProbe:
             httpGet:
-              port: 80
+              port: {{ .Values.image.port }}
               path: /health
             periodSeconds: 2
             failureThreshold: 3
@@ -31,7 +34,7 @@ spec:
             timeoutSeconds: 1
           livenessProbe:
             httpGet:
-              port: 80
+              port: {{ .Values.image.port }}
               path: /health
             periodSeconds: 10
             failureThreshold: 3
