@@ -34,12 +34,14 @@ kubectl port-forward svc/grafana 8080:3000 (admin/admin)
 * <b>otus_rps</b> - RPS приложения, реализовано с помощью метрики типа - Counter.
 * <b>otus_errorResponse</b> - 500 ошибки приложения, реализовано с помощью метрики - Counter.
 
-Все метрики реализованы в разрезе pod с помощью label - Pod.
+Все метрики реализованы в разрезе API с помощью label - url.
+![alt text](img2.png)
 
-Изображени метрик (/metrics).
+Метрики приложения выведены в Grafana (JSON дашборда - dashboard-otus.json):
+![alt text](img1.png)
 
-Метрики приложения выведены в Grafana:
+Метрики Kubernetes по Latancy, RPS, 500 (JSON дашбордка - dashboard-kube-otus.json):
+![alt text](img4.png)
 
-Изображение из Grafana.
-
-Дашборд Grafana JSON находит в корне - dashboard.json.
+Метрики по потреблению CPU, Memory подов namespace="otus" (JSON дашбордка - dashboard-kubernetes.json):
+![alt text](img3.png)
