@@ -1,0 +1,14 @@
+auth:
+    enablePostgresUser: true
+    postgresPassword: "12345"
+    username: "otus"
+    password: "1234"
+    database: "otus"
+
+primary:
+    persistence:
+        enabled: true
+        existingClaim: "pgsql-data-claim"
+
+ServiceMonitor:
+    namespace: otus

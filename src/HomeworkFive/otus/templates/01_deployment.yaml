@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploymentName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: {{ .Values.strategy.type }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      namespace: {{ .Values.namespace }}
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.appName }}
+          image: {{ .Values.image.repository }}
+          ports:
+            - containerPort: {{ .Values.image.port }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMapRefPgsql }}
+            - secretRef:
+                name: {{ .Values.secretMapRef }}
+          readinessProbe:
+            httpGet:
+              port: {{ .Values.image.port }}
+              path: /health
+            periodSeconds: 2
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              port: {{ .Values.image.port }}
+              path: /health
+            periodSeconds: 10
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+            initialDelaySeconds: 10
