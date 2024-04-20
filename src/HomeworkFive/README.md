@@ -22,11 +22,13 @@ PGPASSWORD="$POSTGRES_PASSWORD" psql --host 127.0.0.1 -U otus -d otus -p 5432
 > kubectl port-forward --namespace=m service/nginx-ingress-nginx-controller 8000:80
 
 ## Установка prometheus и grafana:
-helm install kube-prometheus oci://registry-1.docker.io/bitnamicharts/kube-prometheus -f prometheus
-kubectl port-forward --namespace default svc/kube-prometheus-prometheus 9090:9090
+> helm install kube-prometheus oci://registry-1.docker.io/bitnamicharts/kube-prometheus -f prometheus
 
-helm install grafana oci://registry-1.docker.io/bitnamicharts/grafana -f grafana.yaml
-kubectl port-forward svc/grafana 8080:3000 (admin/admin)
+> kubectl port-forward --namespace default svc/kube-prometheus-prometheus 9090:9090
+
+> helm install grafana oci://registry-1.docker.io/bitnamicharts/grafana -f grafana.yaml
+
+> kubectl port-forward svc/grafana 8080:3000 (admin/admin)
 
 ## Метрики приложения
 Метрики приложения доступны по адресу: http://arch.homework:8000/metrics
