@@ -1,4 +1,4 @@
-# Четвертое домашнее задание
+# Пятое домашнее задание - Prometheus, Grafana.
 
 ### Установка postgresql через helm
 1. Добавим репозиторий: 
@@ -23,6 +23,7 @@ PGPASSWORD="$POSTGRES_PASSWORD" psql --host 127.0.0.1 -U otus -d otus -p 5432
 
 ## Установка prometheus и grafana:
 helm install kube-prometheus oci://registry-1.docker.io/bitnamicharts/kube-prometheus -f prometheus
+kubectl port-forward --namespace default svc/kube-prometheus-prometheus 9090:9090
 
 helm install grafana oci://registry-1.docker.io/bitnamicharts/grafana -f grafana.yaml
 kubectl port-forward svc/grafana 8080:3000 (admin/admin)
