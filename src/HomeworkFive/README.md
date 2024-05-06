@@ -1,4 +1,4 @@
-# Четвертое домашнее задание
+# Пятое домашнее задание - Prometheus, Grafana.
 
 ### Установка postgresql через helm
 1. Добавим репозиторий: 
@@ -22,10 +22,13 @@ PGPASSWORD="$POSTGRES_PASSWORD" psql --host 127.0.0.1 -U otus -d otus -p 5432
 > kubectl port-forward --namespace=m service/nginx-ingress-nginx-controller 8000:80
 
 ## Установка prometheus и grafana:
-helm install kube-prometheus oci://registry-1.docker.io/bitnamicharts/kube-prometheus -f prometheus
+> helm install kube-prometheus oci://registry-1.docker.io/bitnamicharts/kube-prometheus -f prometheus
 
-helm install grafana oci://registry-1.docker.io/bitnamicharts/grafana -f grafana.yaml
-kubectl port-forward svc/grafana 8080:3000 (admin/admin)
+> kubectl port-forward --namespace default svc/kube-prometheus-prometheus 9090:9090
+
+> helm install grafana oci://registry-1.docker.io/bitnamicharts/grafana -f grafana.yaml
+
+> kubectl port-forward svc/grafana 8080:3000 (admin/admin)
 
 ## Метрики приложения
 Метрики приложения доступны по адресу: http://arch.homework:8000/metrics
@@ -34,12 +37,14 @@ kubectl port-forward svc/grafana 8080:3000 (admin/admin)
 * <b>otus_rps</b> - RPS приложения, реализовано с помощью метрики типа - Counter.
 * <b>otus_errorResponse</b> - 500 ошибки приложения, реализовано с помощью метрики - Counter.
 
-Все метрики реализованы в разрезе pod с помощью label - Pod.
+Все метрики реализованы в разрезе API с помощью label - url.
+![alt text](img2.png)
 
-Изображени метрик (/metrics).
+Метрики приложения выведены в Grafana (JSON дашборда - dashboard-otus.json):
+![alt text](img1.png)
 
-Метрики приложения выведены в Grafana:
+Метрики Kubernetes по Latancy, RPS, 500 (JSON дашбордка - dashboard-kube-otus.json):
+![alt text](img4.png)
 
-Изображение из Grafana.
-
-Дашборд Grafana JSON находит в корне - dashboard.json.
+Метрики по потреблению CPU, Memory подов namespace="otus" (JSON дашбордка - dashboard-kubernetes.json):
+![alt text](img3.png)
