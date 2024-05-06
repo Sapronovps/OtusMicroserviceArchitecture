@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "4f35c9c8-1678-4e2b-9fd2-e4a2d387f12d",
+		"name": "Otus 6 домашнее задание",
+		"description": "Коллекции для 6 домашнего задания",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34690955"
+	},
+	"item": [
+		{
+			"name": "Регистрация 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "pavel@otus.ru",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Pavel",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qwerty1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "arch.homework:8000/api/register",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Логин 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "pavel@otus.ru",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qwerty1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "arch.homework:8000/api/login",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получить данные о пользователе 1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXJjaC5ob21ld29yazo4MDAwL2FwaS9sb2dpbiIsImlhdCI6MTcxNDk5OTY5NiwiZXhwIjoxNzE1MDAzMjk2LCJuYmYiOjE3MTQ5OTk2OTYsImp0aSI6InlTWFZZVXk1N2RpYWliUDAiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.o7PCmvSrFk9r0kH_7luQMGtmeXz4tKAi4e-KkN_M4v4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework:8000/api/user/1",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Обновить данные о пользователе 1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXJjaC5ob21ld29yazo4MDAwL2FwaS9sb2dpbiIsImlhdCI6MTcxNDk5OTY5NiwiZXhwIjoxNzE1MDAzMjk2LCJuYmYiOjE3MTQ5OTk2OTYsImp0aSI6InlTWFZZVXk1N2RpYWliUDAiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.o7PCmvSrFk9r0kH_7luQMGtmeXz4tKAi4e-KkN_M4v4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Petr\",\n    \"password\": \"qwerty1234\",\n    \"email\": \"petr@otus.ru\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "arch.homework:8000/api/user/1",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получить данные о пользователе 1 после обновления",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXJjaC5ob21ld29yazo4MDAwL2FwaS9sb2dpbiIsImlhdCI6MTcxNDk5OTY5NiwiZXhwIjoxNzE1MDAzMjk2LCJuYmYiOjE3MTQ5OTk2OTYsImp0aSI6InlTWFZZVXk1N2RpYWliUDAiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.o7PCmvSrFk9r0kH_7luQMGtmeXz4tKAi4e-KkN_M4v4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework:8000/api/user/1",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Логаут 1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXJjaC5ob21ld29yazo4MDAwL2FwaS9sb2dpbiIsImlhdCI6MTcxNDk5OTY5NiwiZXhwIjoxNzE1MDAzMjk2LCJuYmYiOjE3MTQ5OTk2OTYsImp0aSI6InlTWFZZVXk1N2RpYWliUDAiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.o7PCmvSrFk9r0kH_7luQMGtmeXz4tKAi4e-KkN_M4v4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "arch.homework:8000/api/logout",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получить данные после разлогина",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXJjaC5ob21ld29yazo4MDAwL2FwaS9sb2dpbiIsImlhdCI6MTcxNDk5OTY5NiwiZXhwIjoxNzE1MDAzMjk2LCJuYmYiOjE3MTQ5OTk2OTYsImp0aSI6InlTWFZZVXk1N2RpYWliUDAiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.o7PCmvSrFk9r0kH_7luQMGtmeXz4tKAi4e-KkN_M4v4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework:8000/api/user/1",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Регистрация 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "dima@otus.ru",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Dima",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qwerty12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "arch.homework:8000/api/register",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Логин 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "dima@otus.ru",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qwerty12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "arch.homework:8000/api/login",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получить данные о пользователе 2",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXJjaC5ob21ld29yazo4MDAwL2FwaS9yZWdpc3RlciIsImlhdCI6MTcxNDk5OTg3NiwiZXhwIjoxNzE1MDAzNDc2LCJuYmYiOjE3MTQ5OTk4NzYsImp0aSI6ImpycVNvRWhyNjVDb3dOdGkiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.6jYhijB2gfm0hg2ZMbqALBuuRsb_6yq4t-WhocvduOw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework:8000/api/user/2",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Логаут 2",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXJjaC5ob21ld29yazo4MDAwL2FwaS9yZWdpc3RlciIsImlhdCI6MTcxNDk5OTg3NiwiZXhwIjoxNzE1MDAzNDc2LCJuYmYiOjE3MTQ5OTk4NzYsImp0aSI6ImpycVNvRWhyNjVDb3dOdGkiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.6jYhijB2gfm0hg2ZMbqALBuuRsb_6yq4t-WhocvduOw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "arch.homework:8000/api/logout",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получить данные о пользователе 2 после обновления",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXJjaC5ob21ld29yazo4MDAwL2FwaS9yZWdpc3RlciIsImlhdCI6MTcxNDk5OTg3NiwiZXhwIjoxNzE1MDAzNDc2LCJuYmYiOjE3MTQ5OTk4NzYsImp0aSI6ImpycVNvRWhyNjVDb3dOdGkiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.6jYhijB2gfm0hg2ZMbqALBuuRsb_6yq4t-WhocvduOw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework:8000/api/user/1",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
