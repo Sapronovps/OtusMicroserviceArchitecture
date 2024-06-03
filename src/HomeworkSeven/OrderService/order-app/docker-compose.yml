@@ -1,0 +1,34 @@
+version: "3.3"
+services:
+    order-app:
+#        image: sapronovps/otus-microservice-architecture:latest
+        build:
+            context: '.'
+            args:
+                uid: ${UID}
+        container_name: order-app
+        ports:
+            - 8080:80
+        networks:
+            - otus-network
+        volumes:
+            - .:/var/www/html
+    order-postgres:
+        image: postgres:15-alpine
+        container_name: order-postgres
+        environment:
+            POSTGRES_DB: 'order'
+            POSTGRES_USER: 'order'
+            POSTGRES_PASSWORD: 'order123'
+            PGDATA: "/var/lib/postgresql/data/pgdata"
+        networks:
+            - otus-network
+        volumes:
+            - orderdb-data:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+networks:
+    otus-network:
+        driver: bridge
+volumes:
+    orderdb-data:
