@@ -10,4 +10,9 @@ class Orders extends Model
     use HasFactory;
 
     protected $fillable = ['user_id'];
+
+    public function getStatus(): string
+    {
+        return 'Создан';
+    }
 }
