@@ -1,0 +1,34 @@
+version: "3.3"
+services:
+    billing-app:
+#        image: sapronovps/otus-microservice-architecture:latest
+        build:
+            context: '.'
+            args:
+                uid: ${UID}
+        container_name: billing-app
+        ports:
+            - 8081:80
+        networks:
+            - otus-network
+        volumes:
+            - .:/var/www/html
+    billing-postgres:
+        image: postgres:15-alpine
+        container_name: billing-postgres
+        environment:
+            POSTGRES_DB: 'billing'
+            POSTGRES_USER: 'billing'
+            POSTGRES_PASSWORD: 'billing123'
+            PGDATA: "/var/lib/postgresql/data/pgdata"
+        networks:
+            - otus-network
+        volumes:
+            - billingdb-data:/var/lib/postgresql/data
+        ports:
+            - "15432:5432"
+networks:
+    otus-network:
+        driver: bridge
+volumes:
+    billingdb-data:

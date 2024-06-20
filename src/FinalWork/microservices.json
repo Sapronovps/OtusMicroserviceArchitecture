@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "96c5e795-f7c9-4f3d-9b14-187939bbee78",
+		"name": "Otus 7 домашнее задание",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34690955"
+	},
+	"item": [
+		{
+			"name": "Создание товара и пополнение остатков",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Лопата совковая\",\n    \"description\": \"Универсальная лопата для огорода и сада\",\n    \"price\": \"120\",\n    \"quantity\": 80\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.49.2:30000/api/product",
+					"host": [
+						"192",
+						"168",
+						"49",
+						"2"
+					],
+					"port": "30000",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Пополнение остатков для существующего товара",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Лопата совковая\",\n    \"description\": \"Универсальная лопата для огорода и сада\",\n    \"price\": \"120\",\n    \"quantity\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.49.2:30000/api/product/1",
+					"host": [
+						"192",
+						"168",
+						"49",
+						"2"
+					],
+					"port": "30000",
+					"path": [
+						"api",
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Посмотреть доступное количество к резерву",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.49.2:30000/api/product/1",
+					"host": [
+						"192",
+						"168",
+						"49",
+						"2"
+					],
+					"port": "30000",
+					"path": [
+						"api",
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создадим пользователя",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Pavel",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "pavel@otus.ru",
+							"type": "text"
+						},
+						{
+							"key": "password\n",
+							"value": "qwerty123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/api/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Пополнение счета",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 1,\n    \"sum\": 2000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.49.2:30001/api/account/replenishment",
+					"host": [
+						"192",
+						"168",
+						"49",
+						"2"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"account",
+						"replenishment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Зарезервируем товар",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 1,\n    \"products\": {\n          \"1\": {\n            \"product_id\": 1,\n            \"quantity\": 1\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.49.2:30000/api/order",
+					"host": [
+						"192",
+						"168",
+						"49",
+						"2"
+					],
+					"port": "30000",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Посмотреть все заказы",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.49.2:30000/api/orders",
+					"host": [
+						"192",
+						"168",
+						"49",
+						"2"
+					],
+					"port": "30000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Посмотреть все счета",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.49.2:30001/api/accounts",
+					"host": [
+						"192",
+						"168",
+						"49",
+						"2"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Посмотреть все уведомления",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.49.2:30002/api/notifications",
+					"host": [
+						"192",
+						"168",
+						"49",
+						"2"
+					],
+					"port": "30002",
+					"path": [
+						"api",
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

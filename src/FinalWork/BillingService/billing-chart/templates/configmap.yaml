@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMapRefPgsql }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.appName }}
+data:
+  DB_HOST: "postgresql-billing.default.svc.cluster.local"
+  DB_PORT: "5434"
+  DB_DATABASE: "otus"
+  DB_USERNAME: "otus"

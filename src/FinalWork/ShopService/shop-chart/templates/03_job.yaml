@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.jobName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  template:
+    spec:
+      containers:
+        - name: {{ .Values.jobName }}
+          image: {{ .Values.image.repository }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMapRefPgsql }}
+            - secretRef:
+                name: {{ .Values.secretMapRef }}
+          command: ["php", "artisan", "migrate"]
+      restartPolicy: Never
+  backoffLimit: 4
