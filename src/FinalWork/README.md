@@ -38,6 +38,15 @@ kubectl apply -f NotificationService/pv.yaml -f NotificationService/pvc.yaml &&
 helm install postgresql-notification -f NotificationService/pgsql-values.yaml bitnami/postgresql &&
 kubectl create namespace notification && helm install notification-app NotificationService/notification-chart/
 
+## Установка prometheus и grafana:
+> helm install kube-prometheus oci://registry-1.docker.io/bitnamicharts/kube-prometheus -f prometheus
+
+> kubectl port-forward --namespace default svc/kube-prometheus-prometheus 9090:9090
+
+> helm install grafana oci://registry-1.docker.io/bitnamicharts/grafana -f grafana.yaml
+
+> kubectl port-forward svc/grafana 8080:3000 (admin/admin)
+
 #### Далее запускаем minikube tunnel
 Minikube должен сформировать url - 192.168.49.2, если он будет другой, тогда необходимо его подставить в OrderService/order-chart/templates/configmap.yaml в
 BILLING_APP_URL и NOTIFICATION_APP_URL и пересоздать приложение OrderApp.
