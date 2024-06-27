@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMapRefPgsql }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.appName }}
+data:
+  DB_HOST: "postgresql-delivery.default.svc.cluster.local"
+  DB_PORT: "5435"
+  DB_DATABASE: "otus"
+  DB_USERNAME: "otus"
+  BILLING_APP_URL: "192.168.49.2:30001"
+  NOTIFICATION_APP_URL: "192.168.49.2:30002"
+  KAFKA_BROKER_LIST: "kafka.default.svc.cluster.local"

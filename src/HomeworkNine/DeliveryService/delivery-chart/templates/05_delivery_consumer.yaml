@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.deliveryConsumer }}
+  namespace: {{ .Values.namespace }}
+spec:
+  template:
+    spec:
+      containers:
+        - name: {{ .Values.deliveryConsumer }}
+          image: {{ .Values.image.repository }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMapRefPgsql }}
+            - secretRef:
+                name: {{ .Values.secretMapRef }}
+          command: ["php", "artisan", "delivery:consumer"]
+      restartPolicy: Never
+  backoffLimit: 4

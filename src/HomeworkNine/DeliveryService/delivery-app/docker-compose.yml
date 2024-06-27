@@ -1,0 +1,34 @@
+version: "3.3"
+services:
+    delivery-app:
+#        image: sapronovps/otus-microservice-architecture:latest
+        build:
+            context: '.'
+            args:
+                uid: ${UID}
+        container_name: delivery-app
+        ports:
+            - 8080:80
+        networks:
+            - otus-network
+        volumes:
+            - .:/var/www/html
+    delivery-postgres:
+        image: postgres:15-alpine
+        container_name: delivery-postgres
+        environment:
+            POSTGRES_DB: 'delivery'
+            POSTGRES_USER: 'delivery'
+            POSTGRES_PASSWORD: 'delivery123'
+            PGDATA: "/var/lib/postgresql/data/pgdata"
+        networks:
+            - otus-network
+        volumes:
+            - deliverydb-data:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+networks:
+    otus-network:
+        driver: bridge
+volumes:
+    deliverydb-data:
